@@ -1,3 +1,4 @@
+using ShapeDrawing;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -25,20 +26,20 @@ public class Parser
 					y = int.Parse(shape.Attributes["y"].Value);
 					width = int.Parse(shape.Attributes["width"].Value);
 					height = int.Parse(shape.Attributes["height"].Value);
-                    shapes.Add(new Rectangle(x, y, width, height));
+                    shapes.Add(new Rectangle(null, x, y, width, height));
                     break;
                 case "circle":
 					x = int.Parse(shape.Attributes["x"].Value);
 					y = int.Parse(shape.Attributes["y"].Value);
 					int size = int.Parse(shape.Attributes["size"].Value);
-                    shapes.Add(new Circle(x, y, size));
+                    shapes.Add(new Circle(null, x, y, size));
                     break;
 				case "star":
 					x = int.Parse(shape.Attributes["x"].Value);
 					y = int.Parse(shape.Attributes["y"].Value);
 					width = int.Parse(shape.Attributes["width"].Value);
 					height = int.Parse(shape.Attributes["height"].Value);
-					shapes.Add (new Star(x,y,width,height));
+					shapes.Add (new Star(null, x,y,width,height));
 					break;
             }
 		}

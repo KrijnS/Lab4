@@ -3,17 +3,17 @@ using System.Drawing;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-
+using ShapeDrawing;
 
 class Rectangle : Shape
-{
+{ 
 
     private int x;
 	private int y;
 	private int width;
 	private int height;
 
-    public Rectangle(int x, int y, int width, int height)
+    public Rectangle(Bridge bridge, int x, int y, int width, int height) : base(bridge)
     {
 		this.x = x;
 		this.y = y;
@@ -21,17 +21,12 @@ class Rectangle : Shape
 		this.height = height;
     }
     
-	public override void Draw(Graphics Canvas)
+	public override void Draw()
     {
-		Pen pen = new Pen(Color.Black);
-		Canvas.DrawLine(pen,x,y,x + width,y);
-		Canvas.DrawLine(pen,x+width,y,x+width,y+height);
-		Canvas.DrawLine(pen,x+width,y+height,x,y+height);
-		Canvas.DrawLine(pen,x,y+height,x,y);
-
+        bridge.DrawRectangle(x, y, width, height);
     }
 
-    public override string GetSVG()
+    public string GetSVG()
     {
         int x1 = this.x;
         int x2 = x1 + this.width;

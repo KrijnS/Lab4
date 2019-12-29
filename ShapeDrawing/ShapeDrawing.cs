@@ -4,6 +4,7 @@ using System.Text;
 using System.Windows.Forms;
 using System.Drawing;
 using System.Collections.Generic;
+using ShapeDrawing;
 
 public class ShapeDrawingForm : Form
 {
@@ -72,12 +73,12 @@ public class ShapeDrawingForm : Form
                     + "\n   \u0022http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd" + "\u0022>\n<svg xmlns=\u0022http://www.w3.org/2000/svg" + "\u0022 version=\u00221.1\u0022>";
                 using (StreamWriter writer = new StreamWriter(stream))
                 {
-                    writer.WriteLine(intro);
-                    for(int i = 0; i < shapes.Count; i++)
-                    {
-                        writer.WriteLine(shapes[i].GetSVG());
-                    }
-                    writer.WriteLine("</svg>");
+                    //writer.WriteLine(intro);
+                    //for(int i = 0; i < shapes.Count; i++)
+                    //{
+                    //    writer.WriteLine(shapes[i].GetSVG());
+                    //}
+                    //writer.WriteLine("</svg>");
                 }				
 			}
 		}
@@ -85,8 +86,13 @@ public class ShapeDrawingForm : Form
 
     private void OnPaint(object sender, PaintEventArgs e)
 	{
-		// Draw all the shapes
-		foreach(Shape shape in shapes)
-			shape.Draw(e.Graphics);
+        //Initiate drawer
+        Drawer drawer = new Drawer(e.Graphics);
+        // Draw all the shapes
+        foreach (Shape shape in shapes)
+        {
+            shape.SetBridge(drawer);
+            shape.Draw();
+        }        
 	}
 }
