@@ -92,7 +92,7 @@ public class ShapeDrawingForm : Form
         foreach (Shape shape in shapes)
         {
             shape.SetBridge(drawer);
-            shape.Draw();
+            shape.Create();
         }        
 	}
 }

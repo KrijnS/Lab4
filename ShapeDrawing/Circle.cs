@@ -18,9 +18,9 @@ public class Circle : Shape
 		this.size = size;
     }
 
-    public override void Draw()
+    public override void Create()
     {
-        bridge.DrawCircle(x, y, size);
+        bridge.CreateCircle(x, y, size);
     }
 
     public string GetSVG()

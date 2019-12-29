@@ -14,13 +14,13 @@ namespace ShapeDrawing
             this.Canvas = canvas;
         }
 
-        public override void DrawCircle(int x, int y, int size)
+        public override void CreateCircle(int x, int y, int size)
         {
             Pen pen = new Pen(Color.Black);
             Canvas.DrawEllipse(pen, x, y, size, size);
         }
 
-        public override void DrawRectangle(int x, int y, int width, int height)
+        public override void CreateRectangle(int x, int y, int width, int height)
         {
             Pen pen = new Pen(Color.Black);
             Canvas.DrawLine(pen,x,y,x + width,y);
@@ -29,7 +29,7 @@ namespace ShapeDrawing
             Canvas.DrawLine(pen,x,y+height,x,y);
         }
 
-        public override void DrawStar(int x, int y, int width, int height)
+        public override void CreateStar(int x, int y, int width, int height)
         {
             Pen pen = new Pen (Color.Black);
             int numPoints = 5;

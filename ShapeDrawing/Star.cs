@@ -20,9 +20,9 @@ public class Star : Shape
 		this.height = height;
 	}
 
-	public override void Draw()
+	public override void Create()
 	{
-        bridge.DrawStar(x, y, width, height); 		
+        bridge.CreateStar(x, y, width, height); 		
 	}
 
     public Point[] CalculateStarPoints(int x, int y, int width, int height, int numPoints)

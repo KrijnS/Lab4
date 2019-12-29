@@ -13,7 +13,7 @@ public abstract class Shape
         this.bridge = bridge;
     }
 
-    public abstract void Draw();
+    public abstract void Create();
 
 
     public void SetBridge(Bridge bridge)

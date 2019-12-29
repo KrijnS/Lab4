@@ -21,9 +21,9 @@ class Rectangle : Shape
 		this.height = height;
     }
     
-	public override void Draw()
+	public override void Create()
     {
-        bridge.DrawRectangle(x, y, width, height);
+        bridge.CreateRectangle(x, y, width, height);
     }
 
     public string GetSVG()
