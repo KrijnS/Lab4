@@ -33,7 +33,8 @@ namespace ShapeDrawing
         {
             Pen pen = new Pen (Color.Black);
             int numPoints = 5;
-            Point[] points = CalculateStarPoints(x, y, width, height, numPoints);
+            Star star = new Star(null,0,0,0,0);
+            Point[] points = star.CalculateStarPoints(x, y, width, height, numPoints);
 
             for (int i = 0; i < numPoints; i++) 
             {
@@ -44,26 +45,5 @@ namespace ShapeDrawing
             }
         }
 
-        public Point[] CalculateStarPoints(int x, int y, int width, int height, int numPoints)
-        {
-            Point[] points = new Point[numPoints];
-            double rx = width / 2;
-            double ry = height / 2;
-            double cx = x + rx;
-            double cy = y + ry;
-
-            double theta = -Math.PI / 2;
-            double dtheta = 4 * Math.PI / numPoints;
-            int i;
-            for (i = 0; i < numPoints; i++)
-            {
-                points[i] = new Point(
-                    Convert.ToInt32(cx + rx * Math.Cos(theta)),
-                    Convert.ToInt32(cy + ry * Math.Sin(theta)));
-                theta += dtheta;
-            }
-
-            return points;
-        }
     }
 }
