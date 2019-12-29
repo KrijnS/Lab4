@@ -10,7 +10,8 @@ public class Star : Shape
     private int x;
     private int y;
     private int width;
-	private int height;
+    private int height;
+    public int numPoints { get ;} 
 
 	public Star (Bridge bridge, int x, int y, int width, int height) : base(bridge)
 	{
@@ -18,6 +19,7 @@ public class Star : Shape
 		this.y = y;
 		this.width = width;
 		this.height = height;
+        numPoints = 5;
 	}
 
 	public override void Create()
@@ -46,19 +48,6 @@ public class Star : Shape
 
         return points;
     }
-
-    //public string GetSVG()
-    //{
-    //    string output = "   <polyline points=\u0022" + points[0].X + ',' + points[0].Y;
-    //    for (int i = 1; i < points.Length; i++)
-    //    {
-    //        output += " " + points[i].X + "," + points[i].Y;
-    //    }
-
-    //    output += " " + points[0].X + "," + points[0].Y  +"\u0022 style=\u0022fill:none;stroke:black;stroke-width:1\u0022 />";
-
-    //    return output;
-    //}
 }
 
 

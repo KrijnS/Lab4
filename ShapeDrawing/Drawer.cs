@@ -32,8 +32,8 @@ namespace ShapeDrawing
         public override void CreateStar(int x, int y, int width, int height)
         {
             Pen pen = new Pen (Color.Black);
-            int numPoints = 5;
             Star star = new Star(null,0,0,0,0);
+            int numPoints = star.numPoints;
             Point[] points = star.CalculateStarPoints(x, y, width, height, numPoints);
 
             for (int i = 0; i < numPoints; i++) 
