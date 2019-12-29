@@ -32,9 +32,21 @@ namespace ShapeDrawing
         public override void DrawStar(int x, int y, int width, int height)
         {
             Pen pen = new Pen (Color.Black);
+            int numPoints = 5;
+            Point[] points = CalculateStarPoints(x, y, width, height, numPoints);
 
-            int numPoints = 3;
-            Point[] pts = new Point[numPoints];
+            for (int i = 0; i < numPoints; i++) 
+            {
+            	Canvas.DrawLine(pen,points[i].X,
+                                          points[i].Y,
+                                          points[(i+1) % numPoints].X,
+                                          points[(i+1) % numPoints].Y);
+            }
+        }
+
+        public Point[] CalculateStarPoints(int x, int y, int width, int height, int numPoints)
+        {
+            Point[] points = new Point[numPoints];
             double rx = width / 2;
             double ry = height / 2;
             double cx = x + rx;
@@ -43,21 +55,15 @@ namespace ShapeDrawing
             double theta = -Math.PI / 2;
             double dtheta = 4 * Math.PI / numPoints;
             int i;
-            for (i = 0; i < numPoints; i++) 
+            for (i = 0; i < numPoints; i++)
             {
-            	pts [i] = new Point (
-            		Convert.ToInt32(cx + rx * Math.Cos (theta)),
-            		Convert.ToInt32(cy + ry * Math.Sin (theta)));
-            	theta += dtheta;
+                points[i] = new Point(
+                    Convert.ToInt32(cx + rx * Math.Cos(theta)),
+                    Convert.ToInt32(cy + ry * Math.Sin(theta)));
+                theta += dtheta;
             }
 
-            for (i = 0; i < numPoints; i++) 
-            {
-            	Canvas.DrawLine(pen,pts[i].X,
-                                          pts[i].Y,
-                                          pts[(i+1) % numPoints].X,
-                                          pts[(i+1) % numPoints].Y);
-            }
+            return points;
         }
     }
 }
