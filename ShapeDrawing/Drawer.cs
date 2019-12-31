@@ -9,34 +9,30 @@ namespace ShapeDrawing
     public class Drawer : Bridge
     {
         public Graphics Canvas;
-
+        
         public Drawer(Graphics canvas)
         {
             this.Canvas = canvas;
         }
 
-        public override void CreateCircle(int x, int y, int size, int color)
+        public override void CreateCircle(int x, int y, int size, Color color)
         {
-            //Pen pen = new Pen(Color.Black);
-            Pen pen = SetColor(color);
-            Canvas.DrawEllipse(pen, x, y, size, size);
+            Canvas.DrawEllipse(new Pen(color), x, y, size, size);
         }
 
-        public override void CreateRectangle(int x, int y, int width, int height, int color)
+        public override void CreateRectangle(int x, int y, int width, int height, Color color)
         {
-            //Pen pen = new Pen(Color.Black);
-            Pen pen = SetColor(color);
+            Pen pen = new Pen(color);
             Canvas.DrawLine(pen,x,y,x + width,y);
             Canvas.DrawLine(pen,x+width,y,x+width,y+height);
             Canvas.DrawLine(pen,x+width,y+height,x,y+height);
             Canvas.DrawLine(pen,x,y+height,x,y);
         }
 
-        public override void CreateStar(int x, int y, int width, int height, int color)
+        public override void CreateStar(int x, int y, int width, int height, Color color)
         {
-            //Pen pen = new Pen(Color.Black);
-            Pen pen = SetColor(color);
-            Star star = new Star(null,0,0,0,0,0);
+            Pen pen = new Pen(color);
+            Star star = new Star(null,0,0,0,0,color);
             int numPoints = star.numPoints;
             Point[] points = star.CalculateStarPoints(x, y, width, height, numPoints);
 
@@ -47,31 +43,7 @@ namespace ShapeDrawing
                                           points[(i+1) % numPoints].X,
                                           points[(i+1) % numPoints].Y);
             }
-        }
-
-        public Pen SetColor(int color)
-        {
-            if (color == 1)
-            {
-                Pen pen = new Pen(Color.Red);
-                return pen;
-            }
-            else if (color == 2)
-            {
-                Pen pen = new Pen(Color.Blue);
-                return pen;
-            }
-            else if (color == 3)
-            {
-                Pen pen = new Pen(Color.Green);
-                return pen;
-            }
-            else
-            {
-                Pen pen = new Pen(Color.Yellow);
-                return pen;
-            }
-        }
+        }     
 
     }
 }

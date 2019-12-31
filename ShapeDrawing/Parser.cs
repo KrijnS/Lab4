@@ -17,7 +17,7 @@ public class Parser
 		foreach(XmlNode shape in doc.SelectNodes("/shapes/*"))
 		{
 			string type = shape.Name;
-			int x; int y; int width; int height; int color;
+			int x; int y; int width; int height; Color color;
 			switch(type)
             {
 
@@ -26,14 +26,24 @@ public class Parser
 					y = int.Parse(shape.Attributes["y"].Value);
 					width = int.Parse(shape.Attributes["width"].Value);
 					height = int.Parse(shape.Attributes["height"].Value);
-                    color = int.Parse(shape.Attributes["color"].Value);
+                    color = Color.FromArgb(
+                        int.Parse(shape.Attributes["alpha"].Value),
+                        int.Parse(shape.Attributes["red"].Value),
+                        int.Parse(shape.Attributes["green"].Value),
+                        int.Parse(shape.Attributes["blue"].Value)
+                    );
                     shapes.Add(new Rectangle(null, x, y, width, height, color));
                     break;
                 case "circle":
 					x = int.Parse(shape.Attributes["x"].Value);
 					y = int.Parse(shape.Attributes["y"].Value);
 					int size = int.Parse(shape.Attributes["size"].Value);
-                    color = int.Parse(shape.Attributes["color"].Value);
+                    color = Color.FromArgb(
+                        int.Parse(shape.Attributes["alpha"].Value),
+                        int.Parse(shape.Attributes["red"].Value),
+                        int.Parse(shape.Attributes["green"].Value),
+                        int.Parse(shape.Attributes["blue"].Value)
+                    );
                     shapes.Add(new Circle(null, x, y, size, color));
                     break;
 				case "star":
@@ -41,7 +51,12 @@ public class Parser
 					y = int.Parse(shape.Attributes["y"].Value);
 					width = int.Parse(shape.Attributes["width"].Value);
 					height = int.Parse(shape.Attributes["height"].Value);
-                    color = int.Parse(shape.Attributes["color"].Value);
+                    color = Color.FromArgb(
+                        int.Parse(shape.Attributes["alpha"].Value),
+                        int.Parse(shape.Attributes["red"].Value),
+                        int.Parse(shape.Attributes["green"].Value),
+                        int.Parse(shape.Attributes["blue"].Value)
+                    );
                     shapes.Add (new Star(null, x,y,width,height, color));
 					break;
             }

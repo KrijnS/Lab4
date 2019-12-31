@@ -5,6 +5,10 @@ using System.Drawing;
 public abstract class Shape
 {
     public Bridge bridge;
+    public int x;
+    public int y;
+    public Color color;
+
 
     public Shape(Bridge bridge)
     {
@@ -19,27 +23,4 @@ public abstract class Shape
         this.bridge = bridge;
     }
 
-    //public Pen SetColor(int color)
-    //{
-    //    if (color == 1)
-    //    {
-    //        Pen pen = new Pen(Color.Red);
-    //        return pen;
-    //    }
-    //    else if (color == 2)
-    //    {
-    //        Pen pen = new Pen(Color.Blue);
-    //        return pen;
-    //    }
-    //    else if (color == 3)
-    //    {
-    //        Pen pen = new Pen(Color.Green);
-    //        return pen;
-    //    }
-    //    else
-    //    {
-    //        Pen pen = new Pen(Color.Yellow);
-    //        return pen;
-    //    }
-    //}
 }

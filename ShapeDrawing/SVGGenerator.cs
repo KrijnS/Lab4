@@ -15,9 +15,9 @@ namespace ShapeDrawing
             svgOutput = new List<string>();
         }
 
-        public override void CreateCircle(int x, int y, int size, int color)
+        public override void CreateCircle(int x, int y, int size, Color color)
         {
-            Pen pen = SetColor(color);
+            Pen pen = new Pen(color);
             int r = size / 2;
             int cx = x + r;
             int cy = y + r;
@@ -27,9 +27,9 @@ namespace ShapeDrawing
             svgOutput.Add(output);
         }
 
-        public override void CreateRectangle(int x, int y, int width, int height, int color)
+        public override void CreateRectangle(int x, int y, int width, int height, Color color)
         {
-            Pen pen = SetColor(color);
+            Pen pen = new Pen(color);
             int x1 = x;
             int x2 = x1 + width;
             int y1 = y;
@@ -40,10 +40,10 @@ namespace ShapeDrawing
             svgOutput.Add(output);
         }
 
-        public override void CreateStar(int x, int y, int width, int height, int color)
+        public override void CreateStar(int x, int y, int width, int height, Color color)
         {
-            Pen pen = SetColor(color);
-            Star star = new Star(null, 0, 0, 0, 0, 0);
+            Pen pen = new Pen(color);
+            Star star = new Star(null, 0, 0, 0, 0, color);
             Point[] points = star.CalculateStarPoints(x, y, width, height, star.numPoints);
             string output = "   <polyline points=\u0022" + points[0].X + ',' + points[0].Y;
             for (int i = 1; i < points.Length; i++)
@@ -54,30 +54,6 @@ namespace ShapeDrawing
             output += " " + points[0].X + "," + points[0].Y + "\u0022 style=\u0022fill:none;stroke:\u0022" + pen + "\u0022;stroke-width:1\u0022 />";
 
             svgOutput.Add(output);
-        }
-
-        public Pen SetColor(int color)
-        {
-            if (color == 1)
-            {
-                Pen pen = new Pen(Color.Red);
-                return pen;
-            }
-            else if (color == 2)
-            {
-                Pen pen = new Pen(Color.Blue);
-                return pen;
-            }
-            else if (color == 3)
-            {
-                Pen pen = new Pen(Color.Green);
-                return pen;
-            }
-            else
-            {
-                Pen pen = new Pen(Color.Yellow);
-                return pen;
-            }
         }
     }
 }
