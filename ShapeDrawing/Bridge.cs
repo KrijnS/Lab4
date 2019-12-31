@@ -8,8 +8,11 @@ namespace ShapeDrawing
 {
     public abstract class Bridge
     {
-        public abstract void CreateCircle(int x, int y, int size);
-        public abstract void CreateStar(int x, int y, int width, int height);
-        public abstract void CreateRectangle(int x, int y, int width, int height);
+        //public Shape shape;
+
+        public abstract void CreateCircle(int x, int y, int size, int color);
+        public abstract void CreateStar(int x, int y, int width, int height, int color);
+        public abstract void CreateRectangle(int x, int y, int width, int height, int color);
+
     }
 }
