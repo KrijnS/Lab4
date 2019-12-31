@@ -9,7 +9,6 @@ public abstract class Shape
     public int y;
     public Color color;
 
-
     public Shape(Bridge bridge)
     {
         this.bridge = bridge;
