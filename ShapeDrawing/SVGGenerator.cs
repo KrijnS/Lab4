@@ -22,7 +22,7 @@ namespace ShapeDrawing
             int cx = x + r;
             int cy = y + r;
             string output = "   <circle cx=\u0022" + cx + "\u0022 cy=\u0022" + cy + "\u0022 r=\u0022" + r +
-                "\u0022 stroke-width=\u00221\u0022 fill=\u0022none\u0022 stroke=\u0022" + pen + "\u0022 />";
+                "\u0022 stroke=\u0022rgb(" + pen.Color.R + ',' + pen.Color.G + ',' + pen.Color.B + ")\u0022 fill=\u0022none\u0022 />";
 
             svgOutput.Add(output);
         }
@@ -35,7 +35,7 @@ namespace ShapeDrawing
             int y1 = y;
             int y2 = y1 + height;
             string output = "   <polyline points=\u0022" + x1 + ',' + y1 + ' ' + x2 + ',' + y1 + ' ' + x2 + ',' + y2 + ' ' + x1 + ',' + y2 + ' ' + x1 + ',' + y1 +
-            "\u0022 style=\u0022fill:none;stroke:\u0022" + pen + "\u0022;stroke-width:1\u0022 />";
+            "\u0022 stroke=\u0022rgb(" + pen.Color.R + ',' + pen.Color.G + ',' + pen.Color.B + ")\u0022 fill=\u0022none\u0022/>";
 
             svgOutput.Add(output);
         }
@@ -51,7 +51,7 @@ namespace ShapeDrawing
                 output += " " + points[i].X + "," + points[i].Y;
             }
 
-            output += " " + points[0].X + "," + points[0].Y + "\u0022 style=\u0022fill:none;stroke:\u0022" + pen + "\u0022;stroke-width:1\u0022 />";
+            output += " " + points[0].X + "," + points[0].Y + "\u0022 stroke=\u0022rgb(" + pen.Color.R + ',' + pen.Color.G + ',' + pen.Color.B + ")\u0022 fill=\u0022none\u0022/>";
 
             svgOutput.Add(output);
         }
