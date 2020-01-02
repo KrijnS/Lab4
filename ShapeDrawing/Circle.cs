@@ -7,20 +7,19 @@ using ShapeDrawing;
 
 public class Circle : Shape
 { 
-    private int x;
-	private int y;
 	private int size;
 
-    public Circle(Bridge bridge, int x, int y, int size) : base(bridge)
+    public Circle(Bridge bridge, int x, int y, int size, Color color) : base(bridge)
     {
 		this.x = x;
 		this.y = y;
 		this.size = size;
+        this.color = color;
     }
 
     public override void Create()
     {
-        bridge.CreateCircle(x, y, size);
+        bridge.CreateCircle(x, y, size, color);
     }
 
 }

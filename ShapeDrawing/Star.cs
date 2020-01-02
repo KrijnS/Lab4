@@ -7,24 +7,23 @@ using ShapeDrawing;
 
 public class Star : Shape
 {
-    private int x;
-    private int y;
     private int width;
     private int height;
     public int numPoints { get ;} 
 
-	public Star (Bridge bridge, int x, int y, int width, int height) : base(bridge)
+	public Star (Bridge bridge, int x, int y, int width, int height, Color color) : base(bridge)
 	{
 		this.x = x;
 		this.y = y;
 		this.width = width;
 		this.height = height;
+        this.color = color;
         numPoints = 5;
 	}
 
 	public override void Create()
 	{
-        bridge.CreateStar(x, y, width, height); 		
+        bridge.CreateStar(x, y, width, height, color); 		
 	}
 
     public Point[] CalculateStarPoints(int x, int y, int width, int height, int numPoints)

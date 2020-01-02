@@ -58,7 +58,7 @@ public class ShapeDrawingForm : Form
 
     // What to do when the user wants to export a TeX file
 	private void exportHandler (object sender, EventArgs e)
-	{
+	{        
 		Stream stream;
 		SaveFileDialog saveFileDialog = new SaveFileDialog();
 
@@ -78,8 +78,8 @@ public class ShapeDrawingForm : Form
                     foreach(Shape shape in shapes)
                     {
                         shape.SetBridge(svgGenerator);
-                        shape.Create();
-                    }
+                        shape.Create();                        
+                    }                 
                     foreach(string output in svgGenerator.svgOutput)
                     {
                         writer.WriteLine(output);

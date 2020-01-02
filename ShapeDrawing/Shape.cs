@@ -5,8 +5,9 @@ using System.Drawing;
 public abstract class Shape
 {
     public Bridge bridge;
-    private int x;
-    private int y;
+    public int x;
+    public int y;
+    public Color color;
 
     public Shape(Bridge bridge)
     {
@@ -20,5 +21,5 @@ public abstract class Shape
     {
         this.bridge = bridge;
     }
-	
+
 }

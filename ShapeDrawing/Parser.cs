@@ -17,29 +17,32 @@ public class Parser
 		foreach(XmlNode shape in doc.SelectNodes("/shapes/*"))
 		{
 			string type = shape.Name;
-			int x; int y; int width; int height;
-			switch(type)
-            {
+			int x; int y; int width; int height; Color color;
 
+            x = int.Parse(shape.Attributes["x"].Value);
+            y = int.Parse(shape.Attributes["y"].Value);
+            color = Color.FromArgb(
+                int.Parse(shape.Attributes["alpha"].Value),
+                int.Parse(shape.Attributes["red"].Value),
+                int.Parse(shape.Attributes["green"].Value),
+                int.Parse(shape.Attributes["blue"].Value)
+            );
+
+            switch (type)
+            {
                 case "rectangle":
-					x = int.Parse(shape.Attributes["x"].Value);
-					y = int.Parse(shape.Attributes["y"].Value);
 					width = int.Parse(shape.Attributes["width"].Value);
 					height = int.Parse(shape.Attributes["height"].Value);
-                    shapes.Add(new Rectangle(null, x, y, width, height));
+                    shapes.Add(new Rectangle(null, x, y, width, height, color));
                     break;
-                case "circle":
-					x = int.Parse(shape.Attributes["x"].Value);
-					y = int.Parse(shape.Attributes["y"].Value);
-					int size = int.Parse(shape.Attributes["size"].Value);
-                    shapes.Add(new Circle(null, x, y, size));
+                case "circle":					
+					int size = int.Parse(shape.Attributes["size"].Value);                    
+                    shapes.Add(new Circle(null, x, y, size, color));
                     break;
-				case "star":
-					x = int.Parse(shape.Attributes["x"].Value);
-					y = int.Parse(shape.Attributes["y"].Value);
+				case "star":					
 					width = int.Parse(shape.Attributes["width"].Value);
-					height = int.Parse(shape.Attributes["height"].Value);
-					shapes.Add (new Star(null, x,y,width,height));
+					height = int.Parse(shape.Attributes["height"].Value);                    
+                    shapes.Add (new Star(null, x,y,width,height, color));
 					break;
             }
 		}
