@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 
@@ -16,36 +17,45 @@ namespace ShapeDrawing
         }
 
         public override void CreateCircle(int x, int y, int size, Color color)
-        { 
-            int r = size / 2;
+        {
+            double correctedX = x / 50f;
+            double correctedY = y / 50f;
+            double correctedR = size / 100f;
           
-            string output = "\\definecolor{myColor}{RGB}{" +color.R + ',' + color.G + ',' + color.B + "}\n\\draw[myColor] (" + x + ',' + y + ") circle (" + r + "cm);";
+            string output = "\\definecolor{myColor}{RGB}{" +color.R + ',' + color.G + ',' + color.B + "}\n\\draw[myColor] (" + correctedX.ToString(new CultureInfo("en-US")) 
+                + ',' + correctedY.ToString(new CultureInfo("en-US")) + ") circle (" + correctedR.ToString(new CultureInfo("en-US")) + "cm);";
             texOutput.Add(output);
         }
 
         public override void CreateRectangle(int x, int y, int width, int height, Color color)
         {
-            int x2 = x + width;
-            int y2 = y + height;
+            double correctedX = x / 50f;
+            double correctedY = y / 50f;
+            double x2 = (x + width) / 50f;
+            double y2 = (y + height) / 50f;
     
-            string output = "\\definecolor{myColor}{RGB}{" + color.R + ',' + color.G + ',' + color.B + "}\n\\draw (" + x + ',' + y + ") rectangle (" + x2 + ',' + y2 + ");";
+            string output = "\\definecolor{myColor}{RGB}{" + color.R + ',' + color.G + ',' + color.B + "}\n\\draw[myColor] (" + correctedX.ToString(new CultureInfo("en-US")) 
+                + ',' + correctedY.ToString(new CultureInfo("en-US")) + ") rectangle (" + x2.ToString(new CultureInfo("en-US")) + ',' + y2.ToString(new CultureInfo("en-US")) + ");";
             texOutput.Add(output);
         }
 
         public override void CreateStar(int x, int y, int width, int height, Color color)
-        {
-            Pen pen = new Pen(color);
-            //Star star = new Star(null, 0, 0, 0, 0, color);
-            //Point[] points = star.CalculateStarPoints(x, y, width, height, star.numPoints);
-            //string output = "   <polyline points=\u0022" + points[0].X + ',' + points[0].Y;
-            //for (int i = 1; i < points.Length; i++)
-            //{
-            //    output += " " + points[i].X + "," + points[i].Y;
-            //}
+        { 
+            Star star = new Star(null, 0, 0, 0, 0, color);
+            Point[] points = star.CalculateStarPoints(x, y, width, height, star.numPoints);
+            float correctedX1 = points[0].X / 50f;
+            float correctedY1 = points[0].Y / 50f;
+            string output = "\\definecolor{myColor}{RGB}{" + color.R + ',' + color.G + ',' + color.B + "}\n\\draw[myColor] (" + correctedX1.ToString(new CultureInfo("en-US")) + ',' + correctedY1.ToString(new CultureInfo("en-US")) + ')';
+            for (int i = 1; i < points.Length; i++)
+            {
+                float correctedX = points[i].X / 50f;
+                float correctedY = points[i].Y / 50f;
+                output += " -- (" + correctedX.ToString(new CultureInfo("en-US")) + "," + correctedY.ToString(new CultureInfo("en-US")) + ')';
+            }
 
-            //output += " " + points[0].X + "," + points[0].Y + "\u0022 style=\u0022fill:none;stroke:\u0022" + pen + "\u0022;stroke-width:1\u0022 />";
-
-            //texOutput.Add(output);
+            output += " -- (" + correctedX1.ToString(new CultureInfo("en-US")) + ',' + correctedY1.ToString(new CultureInfo("en-US")) + ");";
+        
+            texOutput.Add(output);
         }
     }
 }
